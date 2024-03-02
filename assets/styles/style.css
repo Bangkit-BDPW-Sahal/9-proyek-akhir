@@ -4,10 +4,16 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
+  background-image: linear-gradient(to bottom, #b2b8ec, #ffffff);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 body {
@@ -18,163 +24,156 @@ body {
   flex-direction: column;
 }
 
-header.navbar-container {
-  width: 100%;
-  max-width: 1200px;
-  padding: 1rem 4rem;
-  margin-inline: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  z-index: 9999;
+li {
+  list-style: none;
 }
 
-header.navbar-container .logo img {
-  width: 150px;
-}
-
-header.navbar-container .nav-list ul {
-  padding-left: 0;
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem 1rem;
-}
-
-header.navbar-container .nav-list li {
-  list-style-type: none;
-}
-
-header.navbar-container .nav-list li a {
-  padding: 0.5rem 1.5rem;
-  border-radius: 999px;
+a {
   text-decoration: none;
-  font-size: 1.05rem;
-  font-weight: 500;
   color: black;
-  transition: all 0.2s ease-in-out;
+  font-size: 1rem;
 }
 
-header.navbar-container .nav-list li:hover a {
-  background-color: #646fd4;
-  color: white;
+a:hover {
+  color: #646fd4;
+}
+/* HEADER */
+header {
+  position: relative;
+  padding: 1rem 7rem;
+  margin: 2rem 0;
 }
 
-header.navbar-container .daftar {
-  text-decoration: none;
-  font-weight: 500;
-  color: white;
-  background-color: #646fd4;
-  padding: 0.5rem 0.75rem;
-  border-radius: 10px;
-  font-size: medium;
-}
-
-header.navbar-container .daftar:hover {
-  background-color: #242f9b;
-}
-
-.burger-menu {
-  display: none;
-  cursor: pointer;
-}
-
-header.navbar-container .burger-menu {
+.navbar {
+  width: 100%;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  height: 24px;
-  position: absolute;
-  top: 15px;
-  right: 15px;
+  z-index: 999;
 }
 
-@media only screen and (max-width: 768px) {
-  .burger-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 24px;
-  }
+.navbar .logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
-  .burger-menu .bar {
-    width: 30px;
-    height: 4px;
-    background-color: #000;
-    transition: 0.4s;
-  }
+.navbar .links {
+  display: flex;
+  gap: 2rem;
+}
 
-  .burger-menu.active .bar:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-  }
+.navbar .toggle_btn {
+  color: black;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
 
-  .burger-menu.active .bar:nth-child(2) {
-    opacity: 0;
-  }
+.action_btn {
+  background-color: #646fd4;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: scale 0.2 ease;
+}
 
-  .burger-menu.active .bar:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-  }
+.action_btn:hover {
+  scale: 1.05;
+  color: #fff;
+}
 
-  .nav-list {
+.action_btn:active {
+  scale: 0.95;
+}
+
+/* DROP DOWN MENU */
+.dropdown_menu {
+  position: absolute;
+  z-index: 5;
+  display: none;
+  right: 2rem;
+  top: 60px;
+  height: 0;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu.open {
+  height: 240px;
+}
+
+.dropdown_menu li {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown_menu .action_btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+  .navbar .links,
+  .navbar .action_btn {
     display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background-color: #f8f9fa;
   }
-
-  .nav-list ul {
-    padding: 10px;
-    text-align: center;
-  }
-
-  .nav-list ul li {
-    margin: 10px 0;
-  }
-
-  .burger-menu {
+  .navbar .toggle_btn {
     display: block;
   }
-
-  .burger-menu.active .bar:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-  }
-
-  .burger-menu.active .bar:nth-child(2) {
-    opacity: 0;
-  }
-
-  .burger-menu.active .bar:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
+  .dropdown_menu {
+    display: block;
   }
 }
 
-.nav-list-mobile {
-  display: none;
-}
-
-.nav-list-mobile.active {
-  display: block;
+@media (max-width: 576px) {
+  .dropdown_menu {
+    left: 2rem;
+    width: unset;
+  }
+  .navbar {
+    max-width: 100%;
+    display: flex;
+  }
 }
 
 main {
+  height: calc(100vh-60px);
   flex: 1;
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
-  padding: 2rem 4rem;
+  padding: 1rem 7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../../assets/img/dot.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative; /* Ensure proper stacking context */
 }
 
-main .content {
+main .content article {
   flex: 1;
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 main .content .content-description {
@@ -183,7 +182,7 @@ main .content .content-description {
 
 main .content .content-description .title {
   margin-block: 1rem;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -216,9 +215,9 @@ main .content .content-description button .fab {
 }
 
 main .content .content-description button:hover {
-  border: 3px solid #2d3e50;
+  border: 3px solid #646fd4;
   background-color: transparent;
-  color: #2d3e50;
+  color: #646fd4;
 }
 
 main .content .content-image {
@@ -233,38 +232,30 @@ main .content .content-image img {
 }
 
 /* KONTEN KEDUA */
+
 main .section-2 {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  margin: 3rem 0 0 0;
+  flex-direction: column;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin: 1rem 0;
+}
+.section-2 .teks .about,
+.header,
+.deskripsi {
+  margin: 1rem 0;
+}
+main .section-2 .deskripsi {
+  font-weight: 300;
+  color: #333333;
+  font-family: "Montserrat", sans-serif;
 }
 
 main .section-2 img {
-  width: 300px;
-}
-
-main .section-2 {
-  padding: 2rem;
-}
-
-main .section-2 .about {
-  font-family: "Montserrat", sans-serif;
-  color: #646fd4;
-  font-weight: 500;
-}
-
-main .section-2 .header {
-  font-family: "Montserrat", sans-serif;
-  font-size: 3rem;
-  margin: 0;
-}
-
-main .section-2 .deskripsi {
-  font-size: smaller;
-  font-weight: 300;
-  color: #767681;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
 }
 
 div a.daftar {
@@ -283,12 +274,27 @@ div a.daftar:hover {
   background-color: #242f9b;
 }
 
+/* RESPONSIVE DESIGN FOR SECTION-2 */
+@media (min-width: 576px) {
+  main .section-2 {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  main .section-2 img {
+    width: auto;
+    max-width: 300px;
+  }
+}
+
 /* KONTEN KETIGA */
 main .section-3 {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 3rem 2rem; /* Adjusted padding */
+  padding: 3rem 2rem;
   margin: 1rem 0;
 }
 main .section-3 .heading {
@@ -296,6 +302,7 @@ main .section-3 .heading {
   padding: 0 4rem;
   font-weight: 700;
   font-size: 2rem;
+  margin: 2rem 0;
 }
 
 main .section-3 .sub-heading {
@@ -338,6 +345,7 @@ main .section-3 .card-collection .card1:hover {
 }
 
 main .section-3 .card-collection .card {
+  background-color: white;
   padding: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   border-radius: 8px;
@@ -372,7 +380,7 @@ main .section-3 .card-collection .benefit {
   align-items: center;
   gap: 0.25rem;
   margin: 0;
-  padding: 0;
+  padding: 0.25rem 0;
 }
 
 main .section-3 .card-collection .benefit .icon-check {
@@ -398,6 +406,7 @@ main .section-3 .card-collection .card button.pilih-c {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  margin-top: 1rem;
 }
 
 main .section-3 .card-collection .card button.pilih-c:hover {
@@ -415,6 +424,7 @@ main .section-3 .card-collection .card1 button.pilih-c {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  margin-top: 1rem;
 }
 
 main .section-3 .card-collection .card button.pilih-c img {
@@ -431,23 +441,22 @@ main .section-3 .card-collection .card1 button.pilih-c:hover {
 }
 
 /* ASIDE */
-main aside {
+main aside article {
   position: fixed;
   inset-block: 0;
-  inset-inline-end: 0;
-}
-
-main aside .social-media {
-  height: 100%;
+  height: 100vh;
+  inset-inline-start: 0;
   display: flex;
+  transition: right 0.3s ease-in-out;
 }
 
-main aside .social-media ul {
-  padding: 1.5rem 1rem;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
+main aside .sahal {
+  padding: 0.75rem;
+  border-color: white;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
   margin: auto;
-  background-color: #2d3e50;
+  background-color: #646fd4;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -455,29 +464,95 @@ main aside .social-media ul {
   gap: 1.5rem;
 }
 
-main aside .social-media li {
-  list-style-type: none;
+main aside.active {
+  right: 0;
 }
 
-main aside .social-media li a {
-  text-decoration: none;
-  font-size: 1.5rem;
+main aside .sahal img {
+  border-radius: 8px;
+}
+
+.hidden {
+  display: none;
+}
+
+main aside .sahal h4 {
   color: white;
-  transition: all 0.1s ease-in-out;
+  margin-top: 0.5rem;
 }
 
-main aside .social-media li a:hover {
-  color: #89b0d9;
+main aside .sahal p {
+  color: white;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+main aside .sahal button {
+  background-color: transparent;
+  font-weight: bold;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 main div .voyager {
   color: #242f9b;
 }
+aside article .sahal label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
 
+aside article .sahal input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+aside article .sahal #hiddenContent button {
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+aside article .sahal .input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+aside article .sahal #hiddenContent button i {
+  font-size: 18px;
+}
+
+aside article .sahal #hiddenContent .biodata {
+  color: white;
+  margin-top: 0.5rem;
+}
+
+aside article .sahal #hiddenContent table tr .bold {
+  font-weight: bold;
+  padding-right: 1rem;
+}
+
+/* FOOTER */
 footer {
   background-color: #646fd4;
   color: white;
-  padding: 2rem 4rem;
+  padding: 1rem 10rem;
+  margin: 2rem 0;
   width: 100%;
 }
 
@@ -486,7 +561,7 @@ footer .footer-content {
   flex-direction: row;
   flex: auto;
   justify-content: space-between;
-  gap: 2rem 4rem;
+  gap: 2rem 2rem;
 }
 
 footer .deskripsi {
@@ -559,8 +634,32 @@ footer .social-media-footer li a:hover {
   color: #89b0d9;
 }
 
-/* Medium devices (768px dan di bawahnya) */
 @media screen and (max-width: 768px) {
+  footer {
+    padding: 2rem 1rem;
+    background-color: #646fd4;
+    margin: 0;
+  }
+
+  footer .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  footer .deskripsi,
+  footer .link,
+  footer .social-media-footer {
+    margin-bottom: 1.5rem;
+  }
+
+  footer .deskripsi {
+    max-width: none;
+  }
+
+  footer .footer-content .link,
+  footer .footer-content .social-media-footer {
+    text-align: left;
+  }
   header.navbar-container {
     flex-direction: column;
   }
@@ -573,7 +672,6 @@ footer .social-media-footer li a:hover {
     left: 0;
     width: 100%;
     background-color: #f8f9fa;
-    z-index: 999;
   }
 
   header.navbar-container .nav-list ul {
@@ -582,10 +680,10 @@ footer .social-media-footer li a:hover {
   }
 
   main {
-    padding: 1rem 3rem;
+    padding: 1rem 1.5rem;
   }
 
-  main .content {
+  main .content article {
     flex-direction: column;
     gap: 2rem;
   }
@@ -627,5 +725,11 @@ footer .social-media-footer li a:hover {
   header.navbar-container .burger-menu {
     top: 15px;
     right: 15px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  footer .footer-content {
+    padding: 0.5rem 0.75rem;
   }
 }
